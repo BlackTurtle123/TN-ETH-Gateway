@@ -5,3 +5,4 @@ templates/index_old.html
 templates/index_eth.html
 config_run.json
 test.py
+.idea/

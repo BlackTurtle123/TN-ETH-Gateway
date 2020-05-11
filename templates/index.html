@@ -18,11 +18,11 @@
     <header class="deskHeader">
       <div class="logos">
         <div class="logobg">
-          <img class="logo" src="/static/etho.png" alt={{chainName}} + " Logo">
+          <img class="logo" src="/static/eth.png" alt={{chainName}} + " Logo">
         </div>
         <div class="title">
           <h1>
-            {{chainName}} ⬌ Gateway
+            ${{chainName}} ⬌ Gateway
           </h1>
         </div>
         <div class="logobg">
@@ -33,12 +33,12 @@
     <header class="header">
       <div class="title">
         <h1>
-          {{chainName}} ⬍ Gateway
+          ${{chainName}} ⬍ Gateway
         </h1>
       </div>
       <div class="logos">
         <div class="logobg">
-          <img class="logo" src="/static/etho.png" alt={{chainName}} + " Logo">
+          <img class="logo" src="/static/eth.png" alt={{chainName}} + " Logo">
         </div>
         <div class="logobg">
           <img class="logo" src="/static/tn.png" alt="TN Logo">
@@ -50,25 +50,26 @@
         <p>🛈</p>
       </div>
       <div class="info">
-        <h2>This is a gateway for exchanging {{chainName}} tokens between the Ethereum and Turtle Network Platform.</h2>
+        <h2>This is a gateway for exchanging ${{chainName}} between ${{chainName}} Network and Turtle Network.</h2>
+          <p>By using this service you agree to the following <a href="{{ disclaimer }}">terms and conditions</a>.</p>
         <h3>
-					<strong>To Send {{chainName}} to Ethereum Network,</strong> using Turtle Network wallet
+					<strong>To Send ${{chainName}} to ${{chainName}} Network ,</strong> using Turtle Network wallet
         </h3>
         <p>
           - Click "SEND"</br>
           - Recipient's Address = {{ tnAddress }}</br>
-          - Attachment = only insert your ETH wallet address</br>
+          - Attachment = only insert your ${{ chainName }} wallet address</br>
         </p>
         <h3>
-					<strong>To Send {{chainName}} to Turtle Network,</strong> using Ethereum wallet
+					<strong>To Send ${{chainName}} to Turtle Network,</strong> using ${{chainName}} wallet
         </h3>
         <p>
-          - Fill in your source ETH wallet address and the receiving Turtle Network wallet address below</br>
+          - Fill in your source ${{chainName}} wallet address and the receiving Turtle Network wallet address below</br>
           - Click "Establish Tunnel"</br>
-          - From your ETH wallet send the {{chainName}} tokens to the gateway wallet</br>
+          - From your ${{chainName}} wallet send the ${{chainName}} tokens to the gateway wallet</br>
           - Recipient's Address = {{ ethAddress }}</br>
           - Tunnels are one time use, they are deleted after a succesfull transfer</br>
-          - If you want to verify a tunnel fill in your ETH wallet address and click "Check ETH Tunnel"</br>
+          - If you want to verify a tunnel fill in your ${{chainName}} wallet address and click "Check ${{chainName}} Tunnel"</br>
         </p>
       </div>
     </div>
@@ -81,7 +82,7 @@
             <tr>
                 <td>
                   <label for="ethAddress">
-                    ETH Address
+                    ${{chainName}} Address
                   </label>
                 </td>
                 <td>
@@ -104,7 +105,7 @@
             Establish Tunnel
           </button>
           <button onclick="checkETHAddress(event)" class="check">
-            Check ETH Tunnel
+            Check ${{chainName}} Tunnel
           </button>
         </div>
       </form>
@@ -118,7 +119,7 @@
           Turtle Network height: <strong>{{ tnHeight }}</strong>, Turtle Network Gateway Address: <strong>{{ tnAddress }}</strong>
         </p>
         <p class="address">
-          ETH Network height: <strong>{{ ethHeight }}</strong>, Ethereum Network Gateway Address: <strong>{{ ethAddress }}</strong>
+          ${{chainName}} Network height: <strong>{{ ethHeight }}</strong>, Ethereum Network Gateway Address: <strong>{{ ethAddress }}</strong>
         </p>
         <p class="address">
           {{chainName}} Official ASSET ID: <strong>{{ assetID }}</strong>
@@ -176,7 +177,6 @@
         </p>
       </div>
     </div>
-    <a class="freepik" href="https://www.freepik.com/free-photos-vectors/background">Background vector created by pikisuperstar - www.freepik.com</a>
   </div>
 </body>
 

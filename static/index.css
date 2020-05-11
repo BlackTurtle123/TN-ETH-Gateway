@@ -5,8 +5,7 @@ html, body {
  }
 
 body {
-   background: url(bg2.jpg) no-repeat center center fixed;
-   background-color: #0E1226;
+   background-color: #d1e6df;
    -webkit-background-size: cover;
    -moz-background-size: cover;
    -o-background-size: cover;
@@ -59,8 +58,8 @@ h1 {
 
 .emote {
   height: 100%;
-  color: #0DBAAE;
-  background-color: #0E1226;
+  color: #10660b;
+  background-color: #34c92c;
   margin-right: 20%;
   font-size: 2em;
   text-align: center;
@@ -177,4 +176,8 @@ h1 {
     margin: 1% auto;
     grid-template-columns: 7% 93%;
   }
+}
+
+input:invalid {
+  background-color: red;
 }
