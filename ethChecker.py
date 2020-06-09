@@ -142,10 +142,11 @@ class ETHChecker(object):
     def checkTx(self, tx):
         # check the transaction
         result = None
-        transaction = self.w3.eth.getTransactionReceipt(tx)
+        transaction = self.w3.eth.getTransaction(tx)
 
         if transaction['to'] == self.config['erc20']['gatewayAddress']:
-            if transaction['status']:
+            transactionreceipt = self.w3.eth.getTransactionReceipt(tx)
+            if transactionreceipt['status']:
                 sender = transaction['from']
                 recipient = transaction['to']
                 amount = transaction['value'] / 10 ** self.config['erc20']['decimals']
