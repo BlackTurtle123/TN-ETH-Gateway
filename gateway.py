@@ -198,6 +198,33 @@ async def createTunnel(targetAddress):
 @app.get("/api/fullinfo")
 async def api_fullinfo(request: Request):
     heights = await getHeights()
+    return {"chainName": config['main']['name'],
+            "assetID": config['tn']['assetId'],
+            "tn_gateway_fee":config['tn']['gateway_fee'],
+            "tn_network_fee":config['tn']['network_fee'],
+            "tn_total_fee":config['tn']['network_fee']+config['tn']['gateway_fee'],
+            "other_gateway_fee":config['erc20']['gateway_fee'],
+            "other_network_fee":config['erc20']['network_fee'],
+            "other_total_fee":config['erc20']['network_fee'] + config['erc20']['gateway_fee'],
+            "fee": config['tn']['fee'],
+            "company": config['main']['company'],
+            "email": config['main']['contact-email'],
+            "telegram": config['main']['contact-telegram'],
+            "recovery_amount":config['main']['recovery_amount'],
+            "recovery_fee":config['main']['recovery_fee'],
+            "otherHeight": heights['ETH'],
+            "tnHeight": heights['TN'],
+            "tnAddress": config['tn']['gatewayAddress'],
+            "otherAddress": config['erc20']['gatewayAddress'],
+            "disclaimer": config['main']['disclaimer'],
+            "minAmount": config['main']['min'],
+            "maxAmount": config['main']['max'],
+            "type": "tunnel",
+            "usageinfo": ""}
+
+@app.get("/api/fullinfo/balance")
+async def api_fullinfo(request: Request):
+    heights = await getHeights()
     tnBalance = get_tnBalance()
     otherBalance = get_otherBalance()
     return {"chainName": config['main']['name'],
