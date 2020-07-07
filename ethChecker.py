@@ -63,11 +63,14 @@ class ETHChecker(object):
             time.sleep(self.config['erc20']['timeInBetweenChecks'])
 
     def checkBlock(self, heightToCheck):
-        # check content of the block for valid transactions
-        block = self.w3.eth.getBlock(heightToCheck)
         cursor = self.dbCon.cursor()
         amount_tunnels = cursor.execute('SELECT * FROM tunnel').fetchall()
+
+
+
         if len(amount_tunnels) != 0:
+            # check content of the block for valid transactions
+            block = self.w3.eth.getBlock(heightToCheck)
             for transaction in block['transactions']:
                 txInfo = self.checkTx(transaction)
 
@@ -127,7 +130,7 @@ class ETHChecker(object):
                                         tx['id'] + '", "' + str(round(amount)) + '", "' + str(
                                             self.config['tn']['fee']) + '")')
                                     self.dbCon.commit()
-                                    print('send tokens to tn!')
+                                    print('send tokens from eth to tn!')
 
                                     cursor = self.dbCon.cursor()
                                     cursor.execute('DELETE FROM tunnel WHERE sourceAddress = "' + txInfo[
