@@ -103,7 +103,7 @@ class ETHChecker(object):
                             cursor.execute(
                                 'DELETE FROM tunnel WHERE sourceAddress = "' + sourceAddress + '" and targetAddress = "' + targetAddress + '"')
                             self.dbCon.commit()
-                        else:
+                        elif self.checkReceived(transaction):
                             try:
                                 addr = self.pwTN.Address(targetAddress)
                                 if self.config['tn']['assetId'] == 'TN':
@@ -139,22 +139,24 @@ class ETHChecker(object):
 
                             self.verifier.verifyTN(tx)
 
+    def checkReceived(self, tx):
+        transactionreceipt = self.w3.eth.getTransactionReceipt(tx)
+        return transactionreceipt['status']
+
     def checkTx(self, tx):
         # check the transaction
         result = None
         transaction = self.w3.eth.getTransaction(tx)
 
         if transaction['to'] == self.config['erc20']['gatewayAddress']:
-            transactionreceipt = self.w3.eth.getTransactionReceipt(tx)
-            if transactionreceipt['status']:
-                sender = transaction['from']
-                recipient = transaction['to']
-                amount = transaction['value'] / 10 ** self.config['erc20']['decimals']
+            sender = transaction['from']
+            recipient = transaction['to']
+            amount = transaction['value'] / 10 ** self.config['erc20']['decimals']
 
-                cursor = self.dbCon.cursor()
-                res = cursor.execute('SELECT tnTxId FROM executed WHERE ethTxId = "' + tx.hex() + '"').fetchall()
-                if len(res) == 0: result = {'sender': sender, 'function': 'transfer', 'recipient': recipient,
-                                            'amount': amount, 'id': tx.hex()}
+            cursor = self.dbCon.cursor()
+            res = cursor.execute('SELECT tnTxId FROM executed WHERE ethTxId = "' + tx.hex() + '"').fetchall()
+            if len(res) == 0: result = {'sender': sender, 'function': 'transfer', 'recipient': recipient,
+                                        'amount': amount, 'id': tx.hex()}
 
         return result
 
