@@ -100,10 +100,12 @@ class TNChecker(object):
                                 cursor.execute('INSERT INTO executed ("sourceAddress", "targetAddress", "tnTxId", "ethTxId", "amount", "amountFee") VALUES ("' + transaction['sender'] + '", "' + targetAddress + '", "' + transaction['id'] + '", "' + txId.hex() + '", "' + str(round(amount)) + '", "' + str(self.config['erc20']['fee']) + '")')
                                 self.dbCon.commit()
                                 print('send tokens from tn to other network!')
+                                self.verifier.verifyOther(txId)
                         except Exception as e:
                             self.faultHandler(transaction, "txerror", e=e)
+                            continue
 
-                        self.verifier.verifyOther(txId)
+                        
 
     def checkTx(self, tx):
         #check the transaction
