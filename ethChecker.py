@@ -136,12 +136,12 @@ class ETHChecker(object):
                                     cursor.execute('DELETE FROM tunnel WHERE sourceAddress = "' + txInfo[
                                         'sender'] + '" and targetAddress = "' + targetAddress + '"')
                                     self.dbCon.commit()
-
+                                    self.verifier.verifyTN(tx)
+                                    
                             except Exception as e:
                                 self.faultHandler(txInfo, "txerror", e=e)
-
-                            self.verifier.verifyTN(tx)
-
+                                continue
+                                
     def checkReceived(self, tx):
         transactionreceipt = self.w3.eth.getTransactionReceipt(tx)
         return transactionreceipt['status']
